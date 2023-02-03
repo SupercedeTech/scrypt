@@ -24,10 +24,7 @@ description:
     Functions: <http://www.tarsnap.com/scrypt/scrypt.pdf>.
 
 extra-source-files:
-    README.markdown,
-    cbits/crypto_scrypt.h,
-    cbits/sha256.h,
-    cbits/sysendian.h
+    README.markdown
 
 source-repository head
     type:     git
@@ -45,11 +42,9 @@ library
     ghc-options: -Wall
     ghc-prof-options: -auto-all
 
-    c-sources: cbits/crypto_scrypt-sse.c, cbits/sha256.c
-    cc-options: -msse2
-    include-dirs: cbits
-    includes: crypto_scrypt.h
-    install-includes: crypto_scrypt.h
+    build-tool-depends: c2hs:c2hs
+
+    extra-libraries: scrypt-kdf
 
 test-suite scrypt-test
     type: exitcode-stdio-1.0

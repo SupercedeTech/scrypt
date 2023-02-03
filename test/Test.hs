@@ -3,7 +3,6 @@
 
 module Main where
 
-import Control.Applicative ((<$>))
 import Crypto.Scrypt
 import qualified Data.ByteString as B
 import Data.Maybe

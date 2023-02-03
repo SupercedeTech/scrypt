@@ -20,7 +20,8 @@ module Crypto.Scrypt (
     , Pass(..), Salt(..), PassHash(..), scrypt, scrypt'
     ) where
 
-import Control.Applicative
+#include <scrypt-kdf.h>
+
 import qualified Data.ByteString.Base64 as Base64
 import qualified Data.ByteString.Char8 as B
 import Data.Maybe
@@ -241,14 +242,18 @@ scrypt Params{..} (Salt salt) (Pass pass) =
         B.useAsCStringLen salt $ \(saltPtr, saltLen) ->
         B.useAsCStringLen pass $ \(passPtr, passLen) ->
         allocaBytes (fromIntegral bufLen) $ \bufPtr -> do
-            throwErrnoIfMinus1_ "crypto_scrypt" $ crypto_scrypt
+            throwErrnoIfMinus1_ "{#const scrypt_kdf#}" $ {#const scrypt_kdf#}
                 (castPtr passPtr) (fromIntegral passLen)
                 (castPtr saltPtr) (fromIntegral saltLen)
                 (2^logN) (fromIntegral r) (fromIntegral p)
                 bufPtr (fromIntegral bufLen)
             B.packCStringLen (castPtr bufPtr, fromIntegral bufLen)
 
-foreign import ccall unsafe crypto_scrypt
+-- Note that 'scrypt_kdf' is exported as a @#define@, and the symbol in the
+-- actual library ends up being called something else. The documentation
+-- tells us to rely on this function name, so we use c2hs to do that - here,
+-- we are substituting in the result of the define into our Haskell code.
+foreign import ccall unsafe {#const scrypt_kdf#}
     :: Ptr Word8 -> CSize         -- password
     -> Ptr Word8 -> CSize         -- salt
     -> Word64 -> Word32 -> Word32 -- N, r, p
