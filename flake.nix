@@ -31,6 +31,7 @@
           withHoogle = false;
           buildInputs = with haskellPackages; [
             cabal-install
+            cabal2nix
             c2hs
           ];
         });

@@ -4,7 +4,7 @@
 }:
 mkDerivation {
   pname = "scrypt";
-  version = "0.5.0";
+  version = "0.5.0.1";
   src = ./.;
   libraryHaskellDepends = [
     base base64-bytestring bytestring entropy
@@ -15,7 +15,7 @@ mkDerivation {
     base bytestring HUnit QuickCheck test-framework
     test-framework-hunit test-framework-quickcheck2
   ];
-  homepage = "http://github.com/informatikr/scrypt";
+  homepage = "http://github.com/SupercedeTech/scrypt";
   description = "Stronger password hashing via sequential memory-hard functions";
   license = lib.licenses.bsd3;
 }

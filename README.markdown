@@ -4,18 +4,21 @@ This is a Haskell library providing bindings to [Colin Percival's scrypt impleme
 
 Details of the scrypt key derivation function are given in a paper by Colin Percival, Stronger Key Derivation via Sequential Memory-Hard Functions: [PDF](http://www.tarsnap.com/scrypt/scrypt-slides.pdf).
 
+Unlike earlier versions of the `scrypt` library, this version is compatible with multiple OSes and architectures.
+
 # Join in!
 
 We are happy to receive bug reports, fixes, documentation enhancements, and other improvements.
 
-Please report bugs via the [github issue tracker](http://github.com/informatikr/scrypt/issues).
+Please report bugs via the [github issue tracker](http://github.com/SupercedeTech/scrypt/issues).
 
-Master [git repository](http://github.com/informatikr/scrypt):
+Master [git repository](http://github.com/SupercedeTech/scrypt):
 
-    git clone git://github.com/informatikr/scrypt.git
+    git clone git://github.com/SupercedeTech/scrypt.git
 
 # Authors
 
-This library is written and maintained by Falko Peters, <falko.peters@gmail.com>.
+This library was originally written by Falko Peters, <falko.peters@gmail.com>, with thanks to Thomas DuBuisson.
 
-Thanks to Thomas DuBuisson for suggesting the changes to make this package windows-compatible.
+This library is maintained by Supercede Ltd., <support@supercede.com>.
+
