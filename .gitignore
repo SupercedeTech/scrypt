@@ -1,6 +1,11 @@
+# Haskell & Cabal stuff
 cabal-dev
 .cabal-sandbox
 cabal.sandbox.config
 dist
 .hpc
 tests/coverage
+dist-newstyle/
+
+# Nix stuff
+result
