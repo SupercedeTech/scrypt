@@ -15,7 +15,7 @@
         haskell = prev.haskell // {
           packageOverrides = final.lib.composeExtensions (prev.haskell.packageOverrides or (_: _: {}))
             (hsFinal: hsPrev: {
-              scrypt = hsFinal.callCabal2nix "scrypt" ./.
+              scrypt = hsFinal.callPackage (import ./cabal2nix-scrypt.nix)
                 { scrypt-kdf = prev.scrypt.dev; };
             });
         };
