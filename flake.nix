@@ -12,11 +12,12 @@
     in
     {
       overlay = (final: prev: {
-        haskellPackages = prev.haskellPackages.override {
-          overrides = hsFinal: hsPrev: {
-            scrypt = hsFinal.callCabal2nix "scrypt" ./.
-              { scrypt-kdf = prev.scrypt.dev; };
-          };
+        haskell = prev.haskell // {
+          packageOverrides = final.lib.composeExtensions (prev.haskell.packageOverrides or (_: _: {}))
+            (hsFinal: hsPrev: {
+              scrypt = hsFinal.callCabal2nix "scrypt" ./.
+                { scrypt-kdf = prev.scrypt.dev; };
+            });
         };
       });
       packages = forAllSystems (system: {
