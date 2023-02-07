@@ -6,6 +6,15 @@ The supported way to start developing is to drop into the development shell,
 with `nix develop`. Make sure you have Nix installed for this, and that
 the necessary Nix features for using flakes are enabled.
 
+Before starting development, you may want to update the pinned flake inputs in
+`flake.lock` if you want the flake to use your system's package set. Otherwise,
+you will use the pinned package set, which may be out of date. To update the
+inputs, run this before entering the development shell:
+
+```
+nix flake update
+```
+
 Inside the development shell, you should be able to use `cabal` commands as
 normal i.e.
 
