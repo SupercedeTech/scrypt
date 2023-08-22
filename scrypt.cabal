@@ -45,7 +45,7 @@ library
 
     build-tool-depends: c2hs:c2hs
 
-    extra-libraries: scrypt-kdf
+    pkgconfig-depends: scrypt
 
 test-suite scrypt-test
     type: exitcode-stdio-1.0
